@@ -1,0 +1,11 @@
+{% extends "puzzles/base.html" %}
+{% block content %}
+<ul>
+    {% for puzzle in puzzles %}
+        <li style="color: {% cycle 'blue' 'green' %}">
+            <h3>{{puzzle.name}}</h3>
+            {{puzzle.text}}
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

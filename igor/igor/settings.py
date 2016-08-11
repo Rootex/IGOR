@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 
+
+ADMINS = (
+    ('Sotaya Yakubu', 'sotayamy@gmail.com')
+)
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -24,6 +28,7 @@ SECRET_KEY = '*%#5bk6akb#k8dx$0=g*t1t42)v071bfjs^rm8nh)m5$v1xd=^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
 ALLOWED_HOSTS = []
 
@@ -37,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar',
+    'puzzles',
 ]
 
 MIDDLEWARE = [
@@ -76,7 +83,7 @@ WSGI_APPLICATION = 'igor.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'igor.sqlite3'),
     }
 }
 
