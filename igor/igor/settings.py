@@ -82,8 +82,12 @@ WSGI_APPLICATION = 'igor.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'igor.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'igor',
+        'USER': 'plaix',
+        'PASSWORD': 'rootex',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 

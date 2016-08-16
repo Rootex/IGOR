@@ -1,11 +1,15 @@
 {% extends "puzzles/base.html" %}
 {% block content %}
+{% if puzzles %}
 <ul>
     {% for puzzle in puzzles %}
-        <li style="color: {% cycle 'blue' 'green' %}">
-            <h3>{{puzzle.name}}</h3>
-            {{puzzle.text}}
+        <li>
+            <h3>{{puzzle.name}}   <i style=" padding-left:1.8em"><sub>{{puzzle.pub_date}}</sub></i></h3>
+            {{puzzle.text}} <a href="{% url 'solve' puzzle.id %}">Attempt</a>
         </li>
     {% endfor %}
 </ul>
+{% else %}
+<p>No puzzles available</p>
+{% endif %}
 {% endblock %}

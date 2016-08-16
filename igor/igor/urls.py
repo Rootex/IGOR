@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.conf import settings
 
 urlpatterns = [
+    url(r'^$', include('puzzles.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^puzzles/', include('puzzles.urls')),
 ]

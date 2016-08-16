@@ -1,0 +1,8 @@
+{% extends "puzzles/base.html" %}
+{% block content %}
+    <h2>{{puzzle.name}}</h2>
+    {{puzzle.text}}
+
+    <h4>Editor</h4>
+    <textarea name="code">Write your code solution here...</textarea>
+{% endblock %}
