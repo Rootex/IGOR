@@ -4,7 +4,7 @@
 <ul>
     {% for puzzle in puzzles %}
         <li>
-            <h3>{{puzzle.name}}   <i style=" padding-left:1.8em"><sub>{{puzzle.pub_date}}</sub></i></h3>
+            <h1>{{puzzle.name}}</h1><i style=" padding-left:6.8em"><sub>{{puzzle.pub_date}}</sub></i><br><br>
             {{puzzle.text}} <a href="{% url 'solve' puzzle.id %}">Attempt</a>
         </li>
     {% endfor %}
