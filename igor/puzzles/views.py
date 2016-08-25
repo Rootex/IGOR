@@ -20,7 +20,6 @@ def solve(request, puzzle_id):
     :param puzzle_id:
     :return:
     """
-
     puzzle = get_object_or_404(Puzzle, pk=puzzle_id)
     return render(request, 'puzzles/solve_puzzle.html', {'puzzle': puzzle})
 

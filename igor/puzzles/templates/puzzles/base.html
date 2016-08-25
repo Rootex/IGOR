@@ -1,11 +1,14 @@
 <!DOCTYPE html>
+{% load staticfiles %}
+
 <html>
     <head>
+        <link rel="stylesheet" href="{% static 'css/puzzles.css' %}">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
         <meta charset="UTF-8">
-        <title>Puzzles app!</title>
+        <title>Igor</title>
     </head>
     <body>
     <nav class="navbar navbar-default" role="navigation">
@@ -14,7 +17,7 @@
                 <button type="button" class="navbar-toggle " data-toggle="collapse" data-target="#">
                     <span class="sr-only">Show/Hide nav bar</span>
                 </button>
-                <a class="navbar-brand" href="/">
+                <a class="navbar-brand" id="logo" href="/">
                     IGOR
                 </a>
             </div>
@@ -28,12 +31,8 @@
         </div>
         </nav>
     <div class="content container">
-
-
-
-
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-7">
                 {% block content %}
                 {% endblock %}
             </div>
