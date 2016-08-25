@@ -8,16 +8,36 @@
         <title>Puzzles app!</title>
     </head>
     <body>
-    <div class="page-header">
-        <h1><a href="/">IGOR</a></h1>
-    </div>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle " data-toggle="collapse" data-target="#">
+                    <span class="sr-only">Show/Hide nav bar</span>
+                </button>
+                <a class="navbar-brand" href="/">
+                    IGOR
+                </a>
+            </div>
+
+            <ul class="nav navbar-nav">
+
+                <li role="presentation" class="active"><a href="#">Home</a></li>
+                <li role="presentation"><a href="#">Puzzles</a></li>
+                <li role="presentation"><a href="#">Editor</a></li>
+            </ul>
+        </div>
+        </nav>
     <div class="content container">
+
+
+
+
         <div class="row">
             <div class="col-md-8">
-            {% block content %}
-            {% endblock %}
+                {% block content %}
+                {% endblock %}
             </div>
         </div>
-    </div>
+        </div>
     </body>
 </html>

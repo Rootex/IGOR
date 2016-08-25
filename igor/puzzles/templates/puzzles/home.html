@@ -4,11 +4,14 @@
 <ul>
     {% for puzzle in puzzles %}
         <li>
-            <h1>{{puzzle.name}}</h1>
-            <div class="date">
-                {{puzzle.pub_date}}
-            </div>
-            {{puzzle.text}} <a href="{% url 'solve' puzzle.id %}">Attempt</a>
+            <h2>{{puzzle.name}}
+                <div class="date">
+                    <small>
+                        {{puzzle.pub_date}}
+                    </small>
+                </div>
+            </h2>
+            {{puzzle.text | linebreaks |truncatechars:200 }} <a href="{% url 'solve' puzzle.id %}">Attempt</a>
         </li>
     {% endfor %}
 </ul>
