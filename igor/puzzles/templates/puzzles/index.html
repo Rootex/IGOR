@@ -1,0 +1,9 @@
+{% extends "puzzles/base.html" %}
+{% block content%}
+ <h2>Landing</h2>
+<form method="post" action="">{% csrf_token %}
+    {{form.as_p}}
+    <br />
+    <input type="submit" class="btn btn-success" value="Sign Up">
+</form>
+{% endblock %}

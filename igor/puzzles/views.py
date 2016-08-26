@@ -2,6 +2,25 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from .models import Puzzle
+from .forms import SignUpForm
+
+
+def index(request):
+    """
+
+    :param request:
+    :return:
+    """
+    form = SignUpForm(request.POST or None)
+    if form.is_valid():
+        instance = form.save(commit=False)
+        if not instance.full_name:
+            instance.full_name = "John Doe"
+        instance.save()
+    context = {
+        'form': form,
+    }
+    return render(request, 'puzzles/index.html', context)
 
 
 def home(request):
@@ -10,7 +29,7 @@ def home(request):
     :param request:
     :return:
     """
-    return render_to_response('puzzles/home.html', {'puzzles': Puzzle.objects.all()})
+    return render(request, 'puzzles/home.html', {'puzzles': Puzzle.objects.all()})
 
 
 def solve(request, puzzle_id):
