@@ -1,4 +1,9 @@
 body {
     background-image: url("../img/bg-5-full.jpg");
 }
+
+.jumbotron {
+    background: url("../img/bg-9-full.jpg") center center;
+    color: white;
+}
 #logo {color: #336B87; font-family: 'Architects Daughter', cursive; font-size: 30px;}
