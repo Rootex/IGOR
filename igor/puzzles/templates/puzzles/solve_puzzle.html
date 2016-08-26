@@ -1,8 +1,11 @@
 {% extends "puzzles/base.html" %}
+{% block jumbotron %}{% endblock %}
 {% block content %}
+
+    {% if puzzle %}
     <h1>{{puzzle.name}}</h1>
     {{puzzle.text}}
-
+    {% endif %}
     <h4>Arena</h4>
     <div>
         <textarea id="codemirror-textarea" rows="10" cols="80" name="content"></textarea>

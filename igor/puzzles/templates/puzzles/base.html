@@ -3,17 +3,24 @@
 
 <html>
     <head>
+        <!-- Codemirror -->
         <link rel="stylesheet" type="text/css" href="{% static 'js/codemirror/lib/codemirror.css'%}">
         <link rel="stylesheet" type="text/css" href="{% static 'js/codemirror/theme/dracula.css'%}">
-        <link rel="stylesheet" href="{% static 'css/puzzles.css' %}">
+        <!-- Bootstrap -->
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <!-- Local -->
+        <link rel="stylesheet" href="{% static 'css/puzzles.css' %}">
+        <!-- Google -->
         <link href="https://fonts.googleapis.com/css?family=Architects+Daughter|Lobster" rel="stylesheet">
         <meta charset="UTF-8">
         <title>Igor</title>
+        <style>
+            {% block style%}{% endblock%}
+        </style>
     </head>
     <body>
-    <nav class="navbar navbar-default" role="navigation">
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle " data-toggle="collapse" data-target="#">
@@ -27,19 +34,22 @@
             <ul class="nav navbar-nav">
 
                 <li role="presentation" class="active"><a href="{% url 'home'%}">Home</a></li>
-                <li role="presentation"><a href="#">Puzzles</a></li>
-                <li role="presentation"><a href="#">Editor</a></li>
+                <li role="presentation"><a href="{% url 'arena'%}">Arena</a></li>
+                <li role="presentation"><a href="#">Solutions</a></li>
             </ul>
         </div>
         </nav>
-    <div class="content container">
-        <div class="row">
-            <div class="col-md-7">
-                {% block content %}
-                {% endblock %}
-            </div>
+    <div class="container">
+        {% block jumbotron %}
+        <div class="jumbotron">
+            {% block jumbotron_content %}{% endblock%}
         </div>
-        </div>
+        {% endblock %}
+
+        {% block content %}
+        {% endblock %}
+
+    </div> <!-- Container -->
     <!-- Javascript include -->
         <script type="text/javascript" src="{% static 'js/jquery.js'%}"></script>
         <script type="text/javascript" src="{% static 'js/codemirror/lib/codemirror.js'%}"></script>

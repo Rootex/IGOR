@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
+    'crispy_forms',
     'puzzles',
 ]
 
@@ -130,3 +131,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 CODEMIRROR_PATH = 'js/codemirror'
+CRISPY_TEMPLATE_PACK = 'bootstrap3'

@@ -1,9 +1,45 @@
 {% extends "puzzles/base.html" %}
+{% load crispy_forms_tags %}
+
+<style>
+{% block style %}
+.lead {
+    text-align: center;
+    color: #336B87;
+}
+{% endblock %}
+</style>
+
+{% block jumbotron_content %}
+    <div class="row">
+        <div class="col-sm-7">
+            <h1>AI Gaming Platform</h1>
+            <p>A platform that introduce you to programming AI in a completely different and fun way, immerse
+            yourself and compete with friends. May the best coder win!</p>
+            <p>
+                <a class="btn btn-lg btn-primary" href="">Join Us &raquo;</a>
+            </p>
+        </div>
+        <div class="col-sm-5" style="background-color: black;height:250px; ">
+
+        </div>
+    </div>
+{% endblock%}
+
 {% block content%}
- <h2>Landing</h2>
-<form method="post" action="">{% csrf_token %}
-    {{form.as_p}}
-    <br />
-    <input type="submit" class="btn btn-success" value="Sign Up">
-</form>
+<div class="row">
+    <div class="col-xs-3">
+        <p class="lead">Open Source Platform</p>
+    </div>
+    <div class="col-xs-3">
+        <p class="lead">Built with Django & Bootstrap</p>
+    </div>
+    <div class="col-xs-3 pull-right">
+        <form method="post" action="">{% csrf_token %}
+            {{form|crispy}}
+            <br />
+            <input type="submit" class="btn btn-primary" value="Sign Up">
+        </form>
+    </div>
+</div>
 {% endblock %}

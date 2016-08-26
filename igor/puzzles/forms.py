@@ -11,5 +11,9 @@ class SignUpForm(forms.ModelForm):
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
+        email_base, provider = email.split('@')
+        domain, ext = provider.split('.')
+        if not ext == 'edu':
+            raise forms.ValidationError("Please Enter a valid edu address")
         return email
 

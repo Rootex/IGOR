@@ -1,2 +1,4 @@
-body {background-image: url("../img/bg-5-full.jpg")}
+body {
+    background-image: url("../img/bg-5-full.jpg");
+}
 #logo {color: #336B87; font-family: 'Architects Daughter', cursive; font-size: 30px;}
