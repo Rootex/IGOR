@@ -3,6 +3,8 @@
 
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'js/codemirror/lib/codemirror.css'%}">
+        <link rel="stylesheet" type="text/css" href="{% static 'js/codemirror/theme/dracula.css'%}">
         <link rel="stylesheet" href="{% static 'css/puzzles.css' %}">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
@@ -38,5 +40,10 @@
             </div>
         </div>
         </div>
+    <!-- Javascript include -->
+        <script type="text/javascript" src="{% static 'js/jquery.js'%}"></script>
+        <script type="text/javascript" src="{% static 'js/codemirror/lib/codemirror.js'%}"></script>
+        <script type="text/javascript" src="{% static 'js/codemirror/mode/python/python.js'%}"></script>
+        <script type="text/javascript" src="{% static 'js/default.js'%}"></script>
     </body>
 </html>
