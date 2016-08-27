@@ -20,31 +20,33 @@
         </style>
     </head>
     <body>
-    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <nav class="navbar navbar-default navbar-static-top navbar-bgcolor" role="navigation">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle " data-toggle="collapse" data-target="#">
                     <span class="sr-only">Show/Hide nav bar</span>
                 </button>
-                <a class="navbar-brand" id="logo" href="/">
-                    IGOR
+                <a class="navbar-brand " id="logo" href="/">
+                    <big style="color: #89CFF0;">IG</big>OR
                 </a>
             </div>
 
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav " >
 
-                <li role="presentation" class="active"><a href="{% url 'home'%}">Home</a></li>
+                <li role="presentation"><a href="{% url 'home'%}">Home</a></li>
                 <li role="presentation"><a href="{% url 'arena'%}">Arena</a></li>
                 <li role="presentation"><a href="#">Solutions</a></li>
+                <li role="presentation"><a href="#">About</a></li>
             </ul>
         </div>
         </nav>
-    <div class="container">
-        {% block jumbotron %}
+    {% block jumbotron %}
         <div class="jumbotron">
             {% block jumbotron_content %}{% endblock%}
         </div>
         {% endblock %}
+    <div class="container">
+
 
         {% block content %}
         {% endblock %}

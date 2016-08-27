@@ -6,4 +6,19 @@ body {
     background: url("../img/bg-9-full.jpg") center center;
     color: white;
 }
-#logo {color: #336B87; font-family: 'Architects Daughter', cursive; font-size: 30px;}
+
+.navbar-static-top {
+    margin-bottom: 19px;
+}
+.navbar-default {
+    background-color: #3C4556;
+    background-image: none;
+    background-repeat: no-repeat;
+    border-color: #3C4556;
+    text-color: white;
+}
+.nav.navbar-nav li a {
+    color: white;
+}
+
+#logo{color: #BCD4E6; font-family: 'Architects Daughter', cursive; font-size: 30px;}
