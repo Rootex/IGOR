@@ -5,7 +5,6 @@ from . import views
 
 urlpatterns = [
     # landing: /puzzles/
-    url(r'^$', views.index, name='index'),
     url(r'^puzzles/', views.home, name='home'),
     url(r'^arena/', views.arena, name='arena'),
     # ex: /puzzles/5/

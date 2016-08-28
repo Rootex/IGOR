@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+    <head>
+        <!-- Codemirror -->
+        <link rel="stylesheet" type="text/css" href="{% static 'js/codemirror/lib/codemirror.css'%}">
+        <link rel="stylesheet" type="text/css" href="{% static 'js/codemirror/theme/dracula.css'%}">
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <!-- Local -->
+        <link rel="stylesheet" href="{% static 'css/default.css' %}">
+        <!-- Google -->
+        <link href="https://fonts.googleapis.com/css?family=Architects+Daughter|Lobster" rel="stylesheet">
+        <meta charset="UTF-8">
+        <title>Igor</title>
+        <style>
+            {% block style%}{% endblock%}
+        </style>
+    </head>
+    <body>
+    <nav class="navbar navbar-default navbar-static-top navbar-bgcolor" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle " data-toggle="collapse" data-target="#">
+                    <span class="sr-only">Show/Hide nav bar</span>
+                </button>
+                <a class="navbar-brand " id="logo" href="/">
+                    <big style="color: #89CFF0;">IG</big>OR
+                </a>
+            </div>
+
+            <ul class="nav navbar-nav " >
+
+                <li role="presentation"><a href="{% url 'home'%}">Home</a></li>
+                <li role="presentation"><a href="{% url 'arena'%}">Arena</a></li>
+                <li role="presentation"><a href="#">Solutions</a></li>
+                <li role="presentation"><a href="#">About</a></li>
+            </ul>
+        </div>
+        </nav>
+    {% block jumbotron %}
+        <div class="jumbotron">
+            {% block jumbotron_content %}{% endblock%}
+        </div>
+    {% endblock %}
+    <div id="wrap">
+        <div id="main" class="container clear-top">
+
+
+            {% block content %}
+            {% endblock %}
+
+        </div> <!-- Container -->
+    </div><!-- wrap div end-->
+    <br>
+                                 <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+
+                        <div class="footer-social">
+                            <div class="container text-center">
+                                <ul class="list-inline">
+                                    <li class="social-github">
+                                        <a href="https://github.com/IGOR"><i class="fa fa-github fa-3x"></i></a>
+                                    </li>
+                                    <li class="social-twitter">
+                                        <a href="https://twitter.com/plaixes"><i class="fa fa-twitter fa-3x"></i></a>
+                                    </li>
+                                    <li class="social-facebook">
+                                        <a href="https://www.facebook.com/Plaquee/"><i class="fa fa-facebook fa-3x"></i></a>
+                                    </li>
+                                    <li class="social-google-plus">
+                                        <a href="https://plus.google.com/++SotayaYakubu"><i class="fa fa-google-plus fa-3x"></i></a>
+                                    </li>
+                                </ul>
+                            </div><!-- end container -->
+                        </div><!-- end footer-social -->
+
+                <br><br>
+
+                    <div class="footer-main">
+                        <div class="container text-center">
+                            IGOR is an Opensource platform developed and maintained by <a href="http://sotaya.org">
+                            Sotaya Yakubu</a> <br />
+                            All modules and templates are licensed under <a href="#">MIT</a>,
+                            <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.<br>
+                            &copy 2016
+                        </div><!-- end container -->
+                    </div><!-- end footer-main -->
+
+                </div><!--end row-->
+            </div><!-- end container -->
+        </footer>
+
+        <!-- Javascript include -->
+        <script type="text/javascript" src="{% static 'js/jquery.js'%}"></script>
+        <script type="text/javascript" src="{% static 'js/codemirror/lib/codemirror.js'%}"></script>
+        <script type="text/javascript" src="{% static 'js/codemirror/mode/python/python.js'%}"></script>
+        <script type="text/javascript" src="{% static 'js/default.js'%}"></script>
+        <script src="https://use.fontawesome.com/ea89b5c348.js"></script>
+    </body>
+</html>
