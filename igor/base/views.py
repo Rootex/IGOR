@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import SignUpForm
+from .forms import SubscribeForm
 
 
 def index(request):
@@ -8,8 +8,9 @@ def index(request):
     :param request:
     :return:
     """
-    form = SignUpForm(request.POST or None)
+    form = SubscribeForm(request.POST or None)
     if form.is_valid():
+        print(form.cleaned_data['email'])
         instance = form.save(commit=False)
         if not instance.full_name:
             instance.full_name = "John Doe"

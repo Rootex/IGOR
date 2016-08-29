@@ -1,12 +1,12 @@
 from django.contrib import admin
-from .forms import SignUpForm
-from .models import SignUp
+from .forms import SubscribeForm
+from .models import Subscribe
 
 
-class SignUpAdmin(admin.ModelAdmin):
+class SubscribeAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'timestamp', 'updated')
-    form = SignUpForm
+    form = SubscribeForm
     # class Meta:
     #     model = SignUp
 
-admin.site.register(SignUp)
+admin.site.register(Subscribe, SubscribeAdmin)

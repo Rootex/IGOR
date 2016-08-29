@@ -12,11 +12,11 @@
 .navbar-static-top {
     margin-bottom: 0px !important;
 }
+
 {% endblock %}
 </style>
 
 {% block jumbotron_content %}
-    <div class="container">
     <div class="row" >
         <div class="col-sm-6">
             <h1>AI Gaming Platform</h1>
@@ -30,39 +30,49 @@
             <iframe width="560" height="315" src="https://www.youtube.com/embed/AHPLOpkFoGY" frameborder="0" allowfullscreen></iframe>
         </div>
     </div>
-    </div>
 {% endblock%}
 
 {% block content%}
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-xs-3">
-            <p class="lead">Open Source Platform
-                <br /> <br />
-                <i class="fa fa-github fa-5x" aria-hidden="true" ></i>
-            </p>
-        </div>
-        <div class="col-xs-3">
-            <p class="lead">Powered by Django & Bootstrap
-                <img src="{% static 'img/python.png' %}" class="img-responsive img-rounded center " width="150" height="200" >
-            </p>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-3">
+                <p class="lead">Open Source Platform
+                    <br /> <br />
+                    <i class="fa fa-github fa-5x" aria-hidden="true" ></i>
+                </p>
+            </div>
+            <div class="col-xs-3">
+                <p class="lead">Powered by Django & Bootstrap
+                    <img src="{% static 'img/python.png' %}" class="img-responsive img-rounded center " width="150" height="200" >
+                </p>
 
-        </div>
-        <div class="col-xs-3">
-            <p class="lead">For Beginner & Expert Developers
-                <br />
-             <i class="fa fa-git fa-5x" aria-hidden="true"></i>
-            </p>
-        </div>
-        <div class="col-xs-3 pull-right well">
-            <h4 class="lead">Subscribe</h4>
-            <form method="post" action="">{% csrf_token %}
-                {{form|crispy}}
-                <br />
-                <input type="submit" class="btn btn-primary" value="Sign Up">
-            </form>
+            </div>
+            <div class="col-xs-3">
+                <p class="lead">For Beginner & Expert Developers
+                    <br />
+                 <i class="fa fa-git fa-5x" aria-hidden="true"></i>
+                </p>
+            </div>
+            <div class="col-xs-3 pull-right well">
+                <h4 class="lead">Subscribe</h4>
+                <form method="POST" action="">{% csrf_token %}
+                    {{form|crispy}}
+                    <br />
+                    <input type="submit" class="btn btn-primary" value="Subscribe">
+                </form>
+            </div>
         </div>
     </div>
-</div>
+
+    <div class="row" style="text-align: center; background: #D3D3D3;">
+         <div class="container">
+            <div class="col-xs-3">
+                <h2>Hello</h2>
+            </div>
+             <div class="col-xs-5">
+                <h2>Hello</h2>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

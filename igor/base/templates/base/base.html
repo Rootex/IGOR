@@ -39,14 +39,17 @@
                 <li role="presentation"><a href="#">About</a></li>
             </ul>
         </div>
-        </nav>
+    </nav>
     {% block jumbotron %}
         <div class="jumbotron">
-            {% block jumbotron_content %}{% endblock%}
+            <div class="container">
+                {% block jumbotron_content %}{% endblock%}
+            </div>
         </div>
+
     {% endblock %}
     <div id="wrap">
-        <div id="main" class="container clear-top">
+        <div id="main">
 
 
             {% block content %}
@@ -56,41 +59,46 @@
     </div><!-- wrap div end-->
     <br>
                                  <!-- Footer -->
-        <footer class="footer">
+        <footer class="footer" role="contentinfo">
             <div class="container">
                 <div class="row">
-
-                        <div class="footer-social">
-                            <div class="container text-center">
-                                <ul class="list-inline">
-                                    <li class="social-github">
-                                        <a href="https://github.com/IGOR"><i class="fa fa-github fa-3x"></i></a>
-                                    </li>
-                                    <li class="social-twitter">
-                                        <a href="https://twitter.com/plaixes"><i class="fa fa-twitter fa-3x"></i></a>
-                                    </li>
-                                    <li class="social-facebook">
-                                        <a href="https://www.facebook.com/Plaquee/"><i class="fa fa-facebook fa-3x"></i></a>
-                                    </li>
-                                    <li class="social-google-plus">
-                                        <a href="https://plus.google.com/++SotayaYakubu"><i class="fa fa-google-plus fa-3x"></i></a>
-                                    </li>
-                                </ul>
-                            </div><!-- end container -->
-                        </div><!-- end footer-social -->
-
-                <br><br>
-
-                    <div class="footer-main">
+                    <div class="footer-social">
                         <div class="container text-center">
-                            IGOR is an Opensource platform developed and maintained by <a href="http://sotaya.org">
-                            Sotaya Yakubu</a> <br />
-                            All modules and templates are licensed under <a href="#">MIT</a>,
-                            <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.<br>
-                            &copy 2016
+                            <ul class="list-inline">
+                                <li class="social-github">
+                                    <a href="https://github.com/IGOR"><i class="fa fa-github fa-3x"></i></a>
+                                </li>
+                                <li class="social-twitter">
+                                    <a href="https://twitter.com/plaixes"><i class="fa fa-twitter fa-3x"></i></a>
+                                </li>
+                                <li class="social-facebook">
+                                    <a href="https://www.facebook.com/Plaquee/"><i class="fa fa-facebook fa-3x"></i></a>
+                                </li>
+                                <li class="social-google-plus">
+                                    <a href="https://plus.google.com/++SotayaYakubu"><i class="fa fa-google-plus fa-3x"></i></a>
+                                </li>
+                            </ul>
                         </div><!-- end container -->
-                    </div><!-- end footer-main -->
+                    </div><!-- end footer-social -->
 
+                    <br><br>
+                    <div class="col-md-7">
+                        <div class="footer-main">
+                            <div class="container">
+                                IGOR is an Opensource platform developed and maintained by <a href="http://sotaya.org">
+                                Sotaya Yakubu</a> <br />
+                                All modules and templates are licensed under <a href="#">MIT</a>,
+                                <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.<br>
+                                &copy 2016
+                            </div><!-- end container -->
+                        </div><!-- end footer-main -->
+                    </div>
+                    <div class="col-md-3">
+                        <a id="back-to-top" class="btn btn-info  back-to-top pull-right" href="#top">
+                            Back to top
+                            <i class="fa fa-caret-up" aria-hidden="true"></i>
+                        </a>
+                    </div>
                 </div><!--end row-->
             </div><!-- end container -->
         </footer>
