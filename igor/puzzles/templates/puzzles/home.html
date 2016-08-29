@@ -2,21 +2,25 @@
 {% block content %}
 {% block jumbotron%}{% endblock%}
 {% if puzzles %}
-<ul>
-    {% for puzzle in puzzles %}
-        <li>
-            <h2>{{puzzle.name}}
-                <div class="date">
-                    <small>
-                        {{puzzle.pub_date}}
-                    </small>
-                </div>
-            </h2>
-            {{puzzle.text | linebreaks |truncatechars:200 }} <a href="{% url 'solve' puzzle.id %}">Attempt</a>
-        </li>
-    {% endfor %}
-</ul>
+<div class="container">
+    <ul class="list-unstyled">
+        {% for puzzle in puzzles %}
+            <li>
+                <h2>{{puzzle.name}}
+                    <div class="date">
+                        <small>
+                            {{puzzle.pub_date}}
+                        </small>
+                    </div>
+                </h2>
+                <p class="h2">
+                    {{puzzle.text | linebreaks }} <a href="{% url 'solve' puzzle.id %}">Attempt</a>
+                </p>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
 {% else %}
-<p>No puzzles available</p>
+    <p>No puzzles available</p>
 {% endif %}
 {% endblock %}

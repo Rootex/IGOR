@@ -1,15 +1,22 @@
 {% extends "base/base.html" %}
 {% block jumbotron %}{% endblock %}
-{% block content %}
 
+{% block content %}
+<div class="container">
     {% if puzzle %}
-    <h1>{{puzzle.name}}</h1>
-    {{puzzle.text}}
+        <h1>{{puzzle.name}}</h1>
+        <p>{{puzzle.text}}</p>
     {% endif %}
-    <h4>Arena</h4>
-    <div>
-        <textarea id="codemirror-textarea" rows="10" cols="80" name="content"></textarea>
-    </div>
-    <br />
-    <button type="button" class="btn btn-success">Run</button>
+
+    <h3>Code Center</h3>
+    <form class="form-vertical">
+        <div class="form-group form-group-lg">
+            <textarea id="codemirror-textarea" rows="10" cols="80" name="content"></textarea><br />
+            <div class="input-group-btn">
+                <button type="button" class="btn btn-success ">Run</button>
+                <button type="button" class="btn btn-success ">Save to Arena</button>
+            </div>
+        </div>
+    </form>
+</div>
 {% endblock %}

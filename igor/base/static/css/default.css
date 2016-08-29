@@ -7,10 +7,12 @@ html, body {
   height: 100%;
 }
 
-body {
+p {
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.4;
 }
-
-
 footer {
     background: #3C4556;
     color: #eee;
