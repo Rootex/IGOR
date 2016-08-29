@@ -7,8 +7,7 @@ class SubscribeForm(forms.ModelForm):
 
     class Meta:
         model = Subscribe
-        fields = ['full_name', 'email']
-
+        fields = ['email']
     # def clean_email(self):
     #     email = self.cleaned_data.get('email')
     #     email_base, provider = email.split('@')

@@ -19,7 +19,7 @@
 {% block jumbotron_content %}
     <div class="row" >
         <div class="col-sm-6">
-            <h1>AI Gaming Platform</h1>
+            <h1>A.I Programming Arena</h1>
             <p>A platform that introduce you to programming AI in a completely different and fun way, immerse
             yourself and compete with friends. May the best coder win!</p>
             <p>
@@ -27,52 +27,118 @@
             </p>
         </div>
         <div class="col-sm-6">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/AHPLOpkFoGY" frameborder="0" allowfullscreen></iframe>
+            <!--<iframe width="560" height="315" src="https://www.youtube.com/embed/AHPLOpkFoGY" frameborder="0" allowfullscreen>
+            </iframe>-->
+            <img src="{% static 'img/laptop-shell.png'%}" class="img-responsive">
         </div>
     </div>
 {% endblock%}
 
 {% block content%}
+<!-- Platform description -->
+<div class="content-section-b">
     <div class="container">
         <div class="row">
-            <div class="col-xs-3">
+            <div class="col-lg-5 col-sm-6">
+                <hr class="section-heading-spacer">
+                <div class="clearfix"></div>
+                <h2 class="section-heading">Friendly platform &<br>Interactive Learning</h2>
+                <p class="content-section-lead">
+                    A concise documentation on how to use this platform. Learn different A.I algorithms,
+                    apply them to our games and watch your code do the work.
+                </p>
+            </div>
+            <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                <img class="img-responsive" src="{% static 'img/interactive-learning.jpg' %}" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-section-a">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+                <hr class="section-heading-spacer">
+                <div class="clearfix"></div>
+                <h2 class="section-heading">Arena</h2>
+                <p class="content-section-lead">
+                    Program your A.I individually and upload your code to the game in the Arena.
+                    Sit back and watch your A.I compete against other A.I.
+                </p>
+            </div>
+            <div class="col-lg-5 col-sm-pull-6  col-sm-6">
+                <img class="img-responsive" src="{% static 'img/virtual-arena.jpg' %}" alt="">
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container -->
+</div>
+<div class="content-section-b">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-sm-6">
+                <hr class="section-heading-spacer">
+                <div class="clearfix"></div>
+                <h2 class="section-heading">Gamification</h2>
+                <p class="content-section-lead">
+                    Experience a different way of learning through competing against others, gaining points and
+                    various prizes. Get your name to the MVP hall of fame.
+                </p>
+            </div>
+            <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                <img class="img-responsive" src="{% static 'img/gamification.png' %}" alt="">
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Technological brands section-->
+<div class="content-section-a">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-4">
                 <p class="lead">Open Source Platform
                     <br /> <br />
                     <i class="fa fa-github fa-5x" aria-hidden="true" ></i>
                 </p>
             </div>
-            <div class="col-xs-3">
-                <p class="lead">Powered by Django & Bootstrap
+            <div class="col-xs-4">
+                <p class="lead">Powered by Django & Bootstrap<br /> <br />
                     <img src="{% static 'img/python.png' %}" class="img-responsive img-rounded center " width="150" height="200" >
                 </p>
 
             </div>
-            <div class="col-xs-3">
-                <p class="lead">For Beginner & Expert Developers
-                    <br />
-                 <i class="fa fa-git fa-5x" aria-hidden="true"></i>
+            <div class="col-xs-4">
+                <p class="lead">For Every Experience Level<br /><br />
+                    <i class="fa fa-rocket fa-5x" aria-hidden="true"></i>
                 </p>
             </div>
-            <div class="col-xs-3 pull-right well">
-                <h4 class="lead">Subscribe</h4>
-                <form method="POST" action="">{% csrf_token %}
-                    {{form|crispy}}
-                    <br />
-                    <input type="submit" class="btn btn-primary" value="Subscribe">
-                </form>
-            </div>
         </div>
     </div>
+</div>
+<!-- Banner and subscription-->
+<div class="banner">
+    <div class="container" >
+        <h2>Stay Connected and up to date with this project:</h2><br>
+        <form class="form-horizontal" method="POST" action="">{% csrf_token %}
+            <div class="form-group form-group-lg">
+                {% if form.email.errors%}
 
-    <div class="row" style="text-align: center; background: #D3D3D3;">
-         <div class="container">
-            <div class="col-xs-3">
-                <h2>Hello</h2>
+                {% for error in form.email.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{error}}
+                    </div>
+                {% endfor %}
+                {% endif %}
+                <div class="input-group">
+                    <input class="form-control" type="email" name="email" placeholder="Your email..." >
+                    <span class="input-group-btn">
+                        <input type="submit" class="btn btn-primary btn-lg" value="Subscribe">
+                    </span>
+                </div>
             </div>
-             <div class="col-xs-5">
-                <h2>Hello</h2>
-            </div>
-        </div>
+        </form>
     </div>
-
+</div>
 {% endblock %}

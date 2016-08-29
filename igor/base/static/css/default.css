@@ -1,10 +1,15 @@
+body, h1, h2, h3, h4, h5, h6 {
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+}
+
 html, body {
   height: 100%;
 }
 
 body {
-    background-image: url("../img/bg-5-full.jpg");
 }
+
 
 footer {
     background: #3C4556;
@@ -20,11 +25,32 @@ footer {
   clear:both;
   padding-top:20px;
 }
-
-.jumbotron {
-    background: url("../img/bg-9-full.jpg") center center;
-    color: white;
+.banner {
+    padding: 100px 0;
+    background: url("../img/bg-9-full.jpg") no-repeat center center;
+    color: #f8f8f8;
+    background-size: cover;
 }
+
+.banner h2 {
+    margin: 0;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    font-size: 3em;
+}
+.jumbotron {
+
+    color: black;
+}
+
+.jumbotron h1 {
+    font-weight: 100;
+}
+
+.jumbotron p {
+    font-weight: 300;
+    font-size: 25px;
+}
+
 
 .navbar-static-top {
     margin-bottom: 19px;
@@ -41,6 +67,33 @@ footer {
 }
 .nav.navbar-nav li a:hover {
     color: #BCD4E6;
+}
+
+.content-section-a {
+    padding: 50px 0;
+    background-color: #f8f8f8;
+}
+
+.content-section-b {
+    padding: 50px 0;
+    border-top: 1px solid #e7e7e7;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.section-heading-spacer {
+    float: left;
+    width: 200px;
+    border-top: 3px solid #e7e7e7;
+}
+.section-heading {
+    margin-bottom: 30px;
+}
+
+.content-section-lead {
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.4;
 }
 
 img.center {
