@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'base',
     'puzzles',
+    'arena',
 ]
 
 MIDDLEWARE = [

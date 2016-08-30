@@ -20,6 +20,7 @@ from django.conf import settings
 urlpatterns = [
     url(r'^', include('base.urls')),
     url(r'^puzzles/', include('puzzles.urls')),
+    url(r'^arena/', include('arena.urls')),
     # url(r'^about/', views.about, name='about'),
     url(r'^admin/', include(admin.site.urls)),
 ]

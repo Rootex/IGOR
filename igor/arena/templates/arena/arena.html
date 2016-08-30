@@ -1,0 +1,38 @@
+{% extends "base/base.html" %}
+{% load staticfiles%}
+
+
+{% block jumbotron %}{% endblock %}
+<style>
+{% block style%}
+.navbar-static-top {
+    margin-bottom: 0px !important;
+}
+
+.arena-border {
+    background: url("../static/img/arena-bg.jpg");
+    height: auto;
+    padding: 0 0 50px;
+    position: relative;
+}
+{% endblock %}
+</style>
+
+{% block content %}
+<div class="container-fluid arena-border">
+    <div class="container">
+        <div class="row">
+            <canvas id="canvas" width="450" height="450"></canvas><br />
+        </div>
+        <div class="row">
+            <div class="input-group-btn">
+                <button class="btn btn-success" id="play">Play</button>
+                <button class="btn btn-danger" id="stop">Stop</button>
+            </div><br/>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+

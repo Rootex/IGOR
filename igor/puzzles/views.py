@@ -23,7 +23,7 @@ def solve(request, puzzle_id):
     return render(request, 'puzzles/solve_puzzle.html', {'puzzle': puzzle})
 
 
-def arena(request):
+def playground(request):
     """
 
     :param request:
