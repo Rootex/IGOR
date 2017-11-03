@@ -16,3 +16,13 @@ def index(request):
         'form': form,
     }
     return render(request, 'base/index.html', context)
+
+
+def about(request):
+    """
+
+    :param request: 
+    :return: 
+    """
+    context = {}
+    return render(request, 'base/about.html', context)

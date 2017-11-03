@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="{% static 'css/default.css' %}">
         <!-- Google -->
         <link href="https://fonts.googleapis.com/css?family=Architects+Daughter|Lobster" rel="stylesheet">
+
         <meta charset="UTF-8">
         <title>Igor</title>
         <style>
@@ -36,7 +37,7 @@
                 <li role="presentation"><a href="{% url 'home'%}">Home</a></li>
                 <li role="presentation"><a href="{% url 'arena'%}">Arena</a></li>
                 <li role="presentation"><a href="#">Solutions</a></li>
-                <li role="presentation"><a href="#">About</a></li>
+                <li role="presentation"><a href="{% url 'about'%}">About</a></li>
             </ul>
         </div>
     </nav>
@@ -108,5 +109,6 @@
         <script type="text/javascript" src="{% static 'js/default.js'%}"></script>
         <script type="text/javascript" src="{% static 'js/arena.js'%}"></script>
         <script src="https://use.fontawesome.com/ea89b5c348.js"></script>
+        <script type="text/javascript" src="{% static 'js/editor.js'%}"></script>
     </body>
 </html>
