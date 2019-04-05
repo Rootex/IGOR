@@ -22,7 +22,7 @@ urlpatterns = [
     url(r'^puzzles/', include('puzzles.urls')),
     url(r'^arena/', include('arena.urls')),
     # url(r'^about/', views.about, name='about'),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
 ]
 
 if settings.DEBUG:

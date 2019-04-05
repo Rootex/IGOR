@@ -18,6 +18,16 @@ def index(request):
     return render(request, 'base/index.html', context)
 
 
+def register(request):
+    """
+    Registration view
+    :param request:
+    :return:
+    """
+    context = {}
+    return render(request, 'base/register.html', context)
+
+
 def about(request):
     """
 
