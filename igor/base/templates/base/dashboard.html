@@ -1,0 +1,119 @@
+{% extends "base/base.html" %}
+{% block jumbotron %}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2><i class="glyphicon glyphicon-dashboard"></i> {{ user.first_name }}'s Dashboard</h2>
+            <p class="lead">Track your coding progress and achievements</p>
+        </div>
+    </div>
+    
+    <!-- Statistics Row -->
+    <div class="row">
+        <div class="col-md-3">
+            <div class="panel panel-primary">
+                <div class="panel-body text-center">
+                    <h3>{{ solved_puzzles }}</h3>
+                    <p>Puzzles Solved</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-info">
+                <div class="panel-body text-center">
+                    <h3>{{ total_puzzles }}</h3>
+                    <p>Total Puzzles</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-success">
+                <div class="panel-body text-center">
+                    <h3>{{ completion_rate|floatformat:0 }}%</h3>
+                    <p>Completion Rate</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-warning">
+                <div class="panel-body text-center">
+                    <h3>{{ total_attempts }}</h3>
+                    <p>Total Attempts</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Puzzle Progress -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Puzzle Progress</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Status</th>
+                                    <th>Puzzle</th>
+                                    <th>Description</th>
+                                    <th>Attempts</th>
+                                    <th>Best Score</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in puzzle_data %}
+                                <tr class="{% if item.is_solved %}success{% endif %}">
+                                    <td>
+                                        {% if item.is_solved %}
+                                            <i class="glyphicon glyphicon-ok text-success" title="Solved"></i>
+                                        {% else %}
+                                            <i class="glyphicon glyphicon-minus text-muted" title="Not solved"></i>
+                                        {% endif %}
+                                    </td>
+                                    <td><strong>{{ item.puzzle.name }}</strong></td>
+                                    <td>{{ item.puzzle.text|truncatechars:80 }}</td>
+                                    <td>
+                                        {% if item.attempts > 0 %}
+                                            <span class="badge">{{ item.attempts }}</span>
+                                        {% else %}
+                                            <span class="text-muted">0</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if item.best_score > 0 %}
+                                            <div class="progress" style="width: 100px; margin-bottom: 0;">
+                                                <div class="progress-bar {% if item.best_score == 100 %}progress-bar-success{% elif item.best_score >= 50 %}progress-bar-warning{% else %}progress-bar-danger{% endif %}" 
+                                                     role="progressbar" style="width: {{ item.best_score }}%">
+                                                    {{ item.best_score }}%
+                                                </div>
+                                            </div>
+                                        {% else %}
+                                            <span class="text-muted">-</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'solve' item.puzzle.id %}" class="btn btn-sm btn-primary">
+                                            {% if item.is_solved %}
+                                                <i class="glyphicon glyphicon-eye-open"></i> Review
+                                            {% else %}
+                                                <i class="glyphicon glyphicon-play"></i> Solve
+                                            {% endif %}
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

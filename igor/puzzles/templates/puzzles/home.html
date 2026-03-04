@@ -1,26 +1,73 @@
 {% extends "base/base.html" %}
 {% block content %}
 {% block jumbotron%}{% endblock%}
-{% if puzzles %}
+
 <div class="container">
-    <ul class="list-unstyled">
-        {% for puzzle in puzzles %}
-            <li>
-                <h2>{{puzzle.name}}
-                    <div class="date">
-                        <small>
-                            {{puzzle.pub_date}}
-                        </small>
+    <div class="row">
+        <div class="col-md-12">
+            <h2><i class="glyphicon glyphicon-puzzle-piece"></i> Coding Puzzles</h2>
+            <p class="lead">Challenge yourself with these programming puzzles</p>
+            
+            {% if user.is_authenticated %}
+                <div class="alert alert-info">
+                    <i class="glyphicon glyphicon-info-sign"></i>
+                    Welcome back, {{ user.first_name }}! Your progress is automatically saved.
+                    <a href="{% url 'dashboard' %}" class="btn btn-sm btn-primary pull-right">
+                        <i class="glyphicon glyphicon-dashboard"></i> View Dashboard
+                    </a>
+                </div>
+            {% else %}
+                <div class="alert alert-warning">
+                    <i class="glyphicon glyphicon-exclamation-sign"></i>
+                    <a href="{% url 'register' %}">Register</a> or <a href="{% url 'login' %}">login</a> to save your progress!
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    {% if puzzle_data %}
+    <div class="row">
+        {% for item in puzzle_data %}
+        <div class="col-md-6">
+            <div class="panel {% if item.is_solved %}panel-success{% else %}panel-default{% endif %}">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        {% if item.is_solved %}
+                            <i class="glyphicon glyphicon-ok text-success"></i>
+                        {% else %}
+                            <i class="glyphicon glyphicon-play"></i>
+                        {% endif %}
+                        {{ item.puzzle.name }}
+                        
+                        {% if item.attempts > 0 %}
+                            <span class="badge pull-right">{{ item.attempts }} attempt{{ item.attempts|pluralize }}</span>
+                        {% endif %}
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <p>{{ item.puzzle.text }}</p>
+                    <div class="text-right">
+                        <a href="{% url 'solve' item.puzzle.id %}" class="btn {% if item.is_solved %}btn-success{% else %}btn-primary{% endif %}">
+                            {% if item.is_solved %}
+                                <i class="glyphicon glyphicon-eye-open"></i> Review Solution
+                            {% else %}
+                                <i class="glyphicon glyphicon-play"></i> Solve Puzzle
+                            {% endif %}
+                        </a>
                     </div>
-                </h2>
-                <p class="h2">
-                    {{puzzle.text | linebreaks }} <a href="{% url 'solve' puzzle.id %}">Attempt</a>
-                </p>
-            </li>
+                </div>
+            </div>
+        </div>
+        {% if forloop.counter|divisibleby:2 %}
+            </div><div class="row">
+        {% endif %}
         {% endfor %}
-    </ul>
+    </div>
+    {% else %}
+        <div class="alert alert-info">
+            <h4>No puzzles available yet!</h4>
+            <p>Check back soon for new coding challenges.</p>
+        </div>
+    {% endif %}
 </div>
-{% else %}
-    <p>No puzzles available</p>
-{% endif %}
 {% endblock %}

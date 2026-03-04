@@ -1,8 +1,8 @@
-from django.conf.urls import url
+from django.urls import path
 from . import views
 
 
 urlpatterns = [
-    # landing: /puzzles/
-    url(r'^', views.arena, name='arena'),
+    # landing: /arena/
+    path('', views.arena, name='arena'),
 ]

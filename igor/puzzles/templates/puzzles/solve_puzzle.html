@@ -4,19 +4,204 @@
 {% block content %}
 <div class="container">
     {% if puzzle %}
-        <h1>{{puzzle.name}}</h1>
-        <p>{{puzzle.text}}</p>
-    {% endif %}
-
-    <h3>Code Center</h3>
-    <form class="form-vertical">
-        <div class="form-group form-group-lg">
-            <textarea id="codemirror-textarea" rows="10" cols="80" name="content"></textarea><br />
-            <div class="input-group-btn">
-                <button type="button" class="btn btn-success " onclick="showCode()">Run</button>
-                <button type="button" class="btn btn-success ">Save to Arena</button>
+        <div class="row">
+            <div class="col-md-6">
+                <h1>
+                    {{puzzle.name}}
+                    {% if is_review %}
+                        <small class="text-success"><i class="glyphicon glyphicon-ok"></i> Solved</small>
+                    {% endif %}
+                </h1>
+                <p class="lead">{{puzzle.text}}</p>
+                
+                {% if is_review %}
+                    <div class="alert alert-success">
+                        <h4><i class="glyphicon glyphicon-trophy"></i> Congratulations!</h4>
+                        <p>You've successfully solved this puzzle! Below is your working solution.</p>
+                        {% if user_progress.solved_at %}
+                            <small>Solved on: {{ user_progress.solved_at|date:"M d, Y at H:i" }}</small>
+                        {% endif %}
+                    </div>
+                {% else %}
+                    {% if instructions %}
+                        <div class="alert alert-info">
+                            <h4>Instructions:</h4>
+                            <p>{{instructions}}</p>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <div id="results-panel" class="panel panel-default" style="display: none;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Test Results</h3>
+                    </div>
+                    <div class="panel-body" id="results-content">
+                        <!-- Results will be displayed here -->
+                    </div>
+                </div>
             </div>
         </div>
-    </form>
+
+        {% if is_review %}
+            <h3><i class="glyphicon glyphicon-eye-open"></i> Your Solution (Review Mode)</h3>
+            <div class="alert alert-info">
+                <strong>Review Mode:</strong> This is your successful solution. You can still test it or try to improve it!
+            </div>
+        {% else %}
+            <h3>Code Editor</h3>
+        {% endif %}
+        
+        <div class="form-group">
+            <textarea id="code-editor" rows="15" cols="80" name="content" class="form-control">{{function_template}}</textarea>
+        </div>
+        
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-success" id="run-code" onclick="submitSolution()">
+                {% if is_review %}
+                    <i class="glyphicon glyphicon-refresh"></i> Re-test Solution
+                {% else %}
+                    <i class="glyphicon glyphicon-play"></i> Run & Test
+                {% endif %}
+            </button>
+            <button type="button" class="btn btn-info" onclick="resetCode()">
+                {% if is_review %}
+                    <i class="glyphicon glyphicon-repeat"></i> Reset to Original
+                {% else %}
+                    <i class="glyphicon glyphicon-refresh"></i> Reset
+                {% endif %}
+            </button>
+            {% if is_review %}
+                <button type="button" class="btn btn-warning" onclick="startFresh()">
+                    <i class="glyphicon glyphicon-edit"></i> Try New Solution
+                </button>
+            {% endif %}
+            <button type="button" class="btn btn-warning">Save to Arena</button>
+        </div>
+        
+        <div id="loading" style="display: none; margin-top: 10px;">
+            <div class="alert alert-info">
+                <i class="glyphicon glyphicon-refresh glyphicon-spin"></i> Running tests...
+            </div>
+        </div>
+    {% endif %}
 </div>
+
+<script>
+function submitSolution() {
+    const code = document.getElementById('code-editor').value;
+    const runButton = document.getElementById('run-code');
+    const loading = document.getElementById('loading');
+    const resultsPanel = document.getElementById('results-panel');
+    const resultsContent = document.getElementById('results-content');
+    
+    if (!code.trim()) {
+        alert('Please enter some code!');
+        return;
+    }
+    
+    // Show loading
+    runButton.disabled = true;
+    loading.style.display = 'block';
+    resultsPanel.style.display = 'none';
+    
+    fetch('{% url "submit_solution" puzzle.id %}', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            code: code
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        loading.style.display = 'none';
+        runButton.disabled = false;
+        
+        // Display results
+        resultsContent.innerHTML = formatResults(data);
+        resultsPanel.style.display = 'block';
+    })
+    .catch(error => {
+        loading.style.display = 'none';
+        runButton.disabled = false;
+        alert('Error: ' + error.message);
+    });
+}
+
+function formatResults(data) {
+    let html = '';
+    
+    if (data.error) {
+        html = `<div class="alert alert-danger"><strong>Error:</strong> ${data.error}</div>`;
+    } else {
+        const successClass = data.success ? 'alert-success' : 'alert-warning';
+        const icon = data.success ? 'glyphicon-ok' : 'glyphicon-exclamation-sign';
+        
+        html += `<div class="alert ${successClass}">`;
+        html += `<i class="glyphicon ${icon}"></i> `;
+        html += `<strong>${data.passed_tests}/${data.total_tests}</strong> tests passed`;
+        if (data.success) {
+            if (data.first_solve) {
+                html += ' - First solve! 🎉🎉🎉';
+            } else {
+                html += ' - Great job! 🎉';
+            }
+        }
+        html += '</div>';
+        
+        if (data.test_results && data.test_results.length > 0) {
+            html += '<h4>Test Details:</h4>';
+            data.test_results.forEach(test => {
+                const testClass = test.passed ? 'success' : 'danger';
+                const testIcon = test.passed ? 'glyphicon-ok' : 'glyphicon-remove';
+                
+                html += `<div class="panel panel-${testClass}">`;
+                html += `<div class="panel-heading">`;
+                html += `<i class="glyphicon ${testIcon}"></i> ${test.description}`;
+                html += '</div>';
+                html += '<div class="panel-body">';
+                html += `<strong>Input:</strong> ${JSON.stringify(test.input)}<br>`;
+                html += `<strong>Expected:</strong> ${JSON.stringify(test.expected)}<br>`;
+                html += `<strong>Got:</strong> ${JSON.stringify(test.actual)}`;
+                html += '</div></div>';
+            });
+        }
+        
+        if (data.output) {
+            html += `<h4>Console Output:</h4><pre class="alert alert-info">${data.output}</pre>`;
+        }
+    }
+    
+    return html;
+}
+
+function resetCode() {
+    {% if is_review %}
+        // In review mode, reset to the original template, not the saved solution
+        const originalTemplate = `{{puzzle.function_template|escapejs}}`;
+        document.getElementById('code-editor').value = originalTemplate;
+    {% else %}
+        document.getElementById('code-editor').value = `{{function_template|escapejs}}`;
+    {% endif %}
+    document.getElementById('results-panel').style.display = 'none';
+}
+
+{% if is_review %}
+function startFresh() {
+    // Reset to original template for trying a new solution
+    const originalTemplate = `{{puzzle.function_template|escapejs}}`;
+    document.getElementById('code-editor').value = originalTemplate;
+    document.getElementById('results-panel').style.display = 'none';
+    
+    // Update UI to show we're no longer in review mode
+    const reviewAlert = document.querySelector('.alert-info');
+    if (reviewAlert && reviewAlert.textContent.includes('Review Mode')) {
+        reviewAlert.innerHTML = '<strong>New Attempt:</strong> You\'re now working on a fresh solution. Your previous solution is saved!';
+        reviewAlert.className = 'alert alert-warning';
+    }
+}
+{% endif %}
+</script>
 {% endblock %}

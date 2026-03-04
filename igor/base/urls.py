@@ -1,10 +1,12 @@
-from django.conf.urls import url
+from django.urls import path
 from . import views
 
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
-    url(r'^register/', views.register, name='register'),
-    url(r'^about/', views.about, name='about'),
-
+    path('', views.index, name='index'),
+    path('register/', views.register, name='register'),
+    path('login/', views.user_login, name='login'),
+    path('logout/', views.user_logout, name='logout'),
+    path('dashboard/', views.dashboard, name='dashboard'),
+    path('about/', views.about, name='about'),
 ]
